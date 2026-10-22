@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curiosidades al día | ¿Sabías qué...?</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration for Custom Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#161F33',
+                            orange: '#FF6B00',
+                            orangeHover: '#E05E00',
+                            yellow: '#FFD60A',
+                            accent: '#38BDF8',
+                        }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-orange': '0 0 25px -5px rgba(255, 107, 0, 0.5)',
+                        'neon-yellow': '0 0 25px -5px rgba(255, 214, 10, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F19;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(22, 31, 51, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 107, 0, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(255, 107, 0, 0.25);
+        }
+
+        /* Gradient Glow Animations */
+        .glow-bg {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF6B00;
+        }
+
+        /* Animated Pulsing effect */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.08); }
+        }
+        .animate-pulse-slow {
+            animation: pulseGlow 6s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-orange selection:text-white">
+
+    <!-- Ambient Glowing Background Circles -->
+    <div class="glow-bg w-96 h-96 bg-brand-orange top-10 -left-20 animate-pulse-slow"></div>
+    <div class="glow-bg w-96 h-96 bg-brand-yellow top-[40%] -right-20 animate-pulse-slow" style="animation-delay: 2s;"></div>
+    <div class="glow-bg w-96 h-96 bg-brand-orange bottom-20 left-1/3 animate-pulse-slow" style="animation-delay: 4s;"></div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 glass-card border-b border-white/10 px-4 lg:px-8 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-brand-yellow flex items-center justify-center text-brand-dark font-black text-xl shadow-neon-orange group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="font-heading font-extrabold text-xl lg:text-2xl tracking-tight text-white">
+                    Curiosidades<span class="text-brand-orange">.</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+                <a href="#inicio" class="hover:text-brand-orange transition-colors">Inicio</a>
+                <a href="#lo-viral" class="hover:text-brand-orange transition-colors">Lo Viral</a>
+                <a href="#generador" class="hover:text-brand-yellow transition-colors flex items-center gap-1.5 text-brand-yellow">
+                    <i class="fa-solid fa-dice"></i> Datos Flash
+                </a>
+                <a href="#beneficios" class="hover:text-brand-orange transition-colors">¿Por qué seguirnos?</a>
+                <a href="#comunidad" class="hover:text-brand-orange transition-colors">Comunidad</a>
+            </nav>
+
+            <!-- CTA Button & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer" 
+                   class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-brand-orange to-orange-500 hover:from-brand-orangeHover hover:to-orange-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-neon-orange transition-all hover:scale-105 active:scale-95 text-sm">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                    <span>Unirse al Discord</span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Abrir Menú">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card rounded-2xl mt-3 p-5 border border-white/10 flex flex-col gap-4 text-center">
+            <a href="#inicio" class="py-2 hover:text-brand-orange transition-colors">Inicio</a>
+            <a href="#lo-viral" class="py-2 hover:text-brand-orange transition-colors">Lo Viral</a>
+            <a href="#generador" class="py-2 text-brand-yellow font-medium">✨ Datos Flash</a>
+            <a href="#beneficios" class="py-2 hover:text-brand-orange transition-colors">¿Por qué seguirnos?</a>
+            <a href="#comunidad" class="py-2 hover:text-brand-orange transition-colors">Comunidad</a>
+            <a href="https://discord.com" target="_blank" class="bg-brand-orange text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
+                <i class="fa-brands fa-discord"></i> Unirse al Discord
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 px-4 max-w-7xl mx-auto z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-brand-orange/30 text-brand-yellow text-xs lg:text-sm font-semibold tracking-wide uppercase shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+                    🔥 El canal de curiosidades #1 para la Gen Z
+                </div>
+
+                <!-- H1 Heading -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+                    ¿Y si lo que sabías del mundo era <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-brand-yellow to-brand-orange">mentira?</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-lg sm:text-xl text-slate-300 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Rompe el aburrimiento con los datos más locos de ciencia, historia y secretos de videojuegos. Explicados en menos de 60 segundos.
+                </p>
+
+                <!-- Hero Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="https://discord.com" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white font-bold rounded-2xl shadow-neon-orange transition-all hover:-translate-y-1 flex items-center justify-center gap-3 text-base">
+                        <i class="fa-brands fa-discord text-xl"></i>
+                        <span>Unirme a la Crew</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="w-full sm:w-auto px-8 py-4 glass-card hover:bg-white/10 text-white font-semibold rounded-2xl border border-white/20 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 text-base">
+                        <i class="fa-brands fa-youtube text-xl text-red-500"></i>
+                        <span>Ver en YouTube Shorts</span>
+                    </a>
+                </div>
+
+                <!-- Live Social Social Proof -->
+                <div class="pt-6 flex items-center justify-center lg:justify-start gap-4 text-xs sm:text-sm text-slate-400">
+                    <div class="flex -space-x-3">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-dark" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Avatar 1">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-dark" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Avatar 2">
+                        <img class="w-9 h-9 rounded-full border-2 border-brand-dark" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Avatar 3">
+                    </div>
+                    <p><strong class="text-white font-semibold">+150,000</strong> curiosos ya forman parte</p>
+                </div>
+            </div>
+
+            <!-- Hero Right Widget: Phone Preview Player -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-[320px] aspect-[9/16] rounded-[38px] p-3 glass-card border-2 border-white/20 shadow-2xl shadow-brand-orange/20 overflow-hidden group">
+                    <!-- Internal Mobile Display Mockup -->
+                    <div class="relative w-full h-full rounded-[28px] bg-slate-950 overflow-hidden flex flex-col justify-between p-5 border border-white/10">
+                        
+                        <!-- Background Mock Image -->
+                        <img id="hero-preview-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" alt="Preview Video background">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+
+                        <!-- Top Player Bar -->
+                        <div class="relative z-10 flex items-center justify-between text-xs text-white/80">
+                            <span class="flex items-center gap-1.5 bg-red-600 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white">
+                                <i class="fa-solid fa-circle text-[6px] animate-pulse"></i> EN VIVO
+                            </span>
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-eye"></i> 14.2k</span>
+                        </div>
+
+                        <!-- Interactive Play Central Overlay Button -->
+                        <div class="relative z-10 self-center my-auto">
+                            <button onclick="openVideoModal('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80', '¿El pulpo tiene 3 corazones y sangre azul?', 'Descubre la increíble biología submarina en 45 segundos.')" 
+                                    class="w-16 h-16 rounded-full bg-brand-orange/90 hover:bg-brand-orange text-white flex items-center justify-center text-2xl shadow-neon-orange hover:scale-110 transition-all cursor-pointer">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </button>
+                        </div>
+
+                        <!-- Video Bottom Info -->
+                        <div class="relative z-10 space-y-2 text-left">
+                            <span class="px-2.5 py-0.5 rounded-full bg-brand-yellow/20 text-brand-yellow text-xs font-semibold border border-brand-yellow/30">💡 Ciencia Express</span>
+                            <h3 class="text-white font-bold text-base leading-snug line-clamp-2">¿El pulpo tiene 3 corazones y sangre azul?</h3>
+                            <div class="flex items-center justify-between text-xs text-slate-300 pt-2 border-t border-white/10">
+                                <span><i class="fa-regular fa-heart text-brand-orange mr-1"></i> 84.5k likes</span>
+                                <span><i class="fa-regular fa-comment mr-1"></i> 1.2k comentarios</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: MINI GENERADOR INTERACTIVO DE DATOS CURIOSOS -->
+    <section id="generador" class="py-16 px-4 max-w-5xl mx-auto z-10 relative">
+        <div class="glass-card rounded-3xl p-6 sm:p-10 border border-brand-yellow/30 text-center relative overflow-hidden">
+            <!-- Background Glow -->
+            <div class="absolute -right-20 -bottom-20 w-60 h-60 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-2xl mx-auto space-y-4">
+                <span class="text-brand-yellow font-bold text-xs uppercase tracking-widest bg-brand-yellow/10 px-3 py-1 rounded-full border border-brand-yellow/20">
+                    ⚡ Widget Interactivo
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Generador de Datos Flash</h2>
+                <p class="text-slate-300 text-sm sm:text-base">Haz clic en el botón y aprende algo completamente loco en solo un segundo.</p>
+
+                <!-- Curiosity Box -->
+                <div id="curiosity-box" class="min-h-[140px] my-6 p-6 rounded-2xl bg-brand-dark/80 border border-white/10 flex flex-col justify-center items-center transition-all duration-300">
+                    <span id="curiosity-category" class="text-brand-orange font-semibold text-xs tracking-wider uppercase mb-2">
+                        🎮 Videojuegos
+                    </span>
+                    <p id="curiosity-text" class="text-white text-lg sm:text-xl font-medium leading-snug">
+                        "En el Mario Bros original de 1985, las nubes y los arbustos usan exactamente el mismo sprite, pero recoloreado."
+                    </p>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generate-btn" onclick="generateRandomFact()" class="px-8 py-3.5 bg-gradient-to-r from-brand-yellow to-amber-500 hover:from-amber-400 hover:to-brand-yellow text-brand-dark font-extrabold rounded-xl shadow-neon-yellow transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mx-auto">
+                    <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                    <span>¡Sorpréndeme con otro dato!</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: LO MÁS VIRAL (Video Grid) -->
+    <section id="lo-viral" class="py-20 px-4 max-w-7xl mx-auto relative z-10">
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-3xl sm:text-5xl font-black text-white">Lo Más <span class="text-brand-orange">Viral</span> de la Semana</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto text-base sm:text-lg">Los Shorts y Reels que rompieron el algoritmo esta semana. Toca para ver una muestra.</p>
+        </div>
+
+        <!-- Video Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden glass-card-hover group cursor-pointer" 
+                 onclick="openVideoModal('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80', 'El secreto oculto en los mapas de GTA V', 'El misterio del Monte Chiliad resuelto después de años de teorías.')">
+                <div class="relative aspect-[9/12] bg-slate-900 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Video Gaming" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                    
+                    <!-- Play Overlay Icon -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-orange/90 text-white flex items-center justify-center text-xl shadow-neon-orange group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+
+                    <span class="absolute top-4 left-4 bg-brand-dark/80 backdrop-blur-md border border-white/20 text-brand-yellow text-xs px-3 py-1 rounded-full font-semibold">
+                        🎮 Gaming
+                    </span>
+                    <span class="absolute top-4 right-4 bg-black/60 text-white text-xs px-2.5 py-1 rounded-md font-mono">0:58</span>
+                </div>
+
+                <div class="p-5 space-y-3">
+                    <h3 class="text-lg font-bold text-white group-hover:text-brand-orange transition-colors">El secreto oculto en los mapas de GTA V</h3>
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                        <span><i class="fa-solid fa-fire text-brand-orange mr-1"></i> 1.4M Vistas</span>
+                        <span><i class="fa-solid fa-thumbs-up mr-1"></i> 120k Likes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden glass-card-hover group cursor-pointer" 
+                 onclick="openVideoModal('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80', '¿Qué pasaría si la Tierra deja de girar 1 segundo?', 'El efecto de inercia destruiría casi todo en el ecuador a más de 1600 km/h.')">
+                <div class="relative aspect-[9/12] bg-slate-900 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Video Ciencia" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-orange/90 text-white flex items-center justify-center text-xl shadow-neon-orange group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+
+                    <span class="absolute top-4 left-4 bg-brand-dark/80 backdrop-blur-md border border-white/20 text-brand-yellow text-xs px-3 py-1 rounded-full font-semibold">
+                        🌌 Ciencia Espacial
+                    </span>
+                    <span class="absolute top-4 right-4 bg-black/60 text-white text-xs px-2.5 py-1 rounded-md font-mono">0:45</span>
+                </div>
+
+                <div class="p-5 space-y-3">
+                    <h3 class="text-lg font-bold text-white group-hover:text-brand-orange transition-colors">¿Qué pasa si la Tierra frena 1 segundo?</h3>
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                        <span><i class="fa-solid fa-fire text-brand-orange mr-1"></i> 2.8M Vistas</span>
+                        <span><i class="fa-solid fa-thumbs-up mr-1"></i> 310k Likes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden glass-card-hover group cursor-pointer" 
+                 onclick="openVideoModal('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1000&q=80', 'El misterio sin resolver de la señal Wow!', 'La transmisión de radio de 1977 que aún intriga a la NASA.')">
+                <div class="relative aspect-[9/12] bg-slate-900 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" alt="Video Misterios" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-orange/90 text-white flex items-center justify-center text-xl shadow-neon-orange group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+
+                    <span class="absolute top-4 left-4 bg-brand-dark/80 backdrop-blur-md border border-white/20 text-brand-yellow text-xs px-3 py-1 rounded-full font-semibold">
+                        🕵️ Misterios
+                    </span>
+                    <span class="absolute top-4 right-4 bg-black/60 text-white text-xs px-2.5 py-1 rounded-md font-mono">0:59</span>
+                </div>
+
+                <div class="p-5 space-y-3">
+                    <h3 class="text-lg font-bold text-white group-hover:text-brand-orange transition-colors">La misteriosa Señal Wow! de 1977</h3>
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                        <span><i class="fa-solid fa-fire text-brand-orange mr-1"></i> 980k Vistas</span>
+                        <span><i class="fa-solid fa-thumbs-up mr-1"></i> 95k Likes</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: BENEFICIOS / POR QUÉ SEGUIRNOS -->
+    <section id="beneficios" class="py-20 px-4 max-w-7xl mx-auto relative z-10">
+        <div class="text-center space-y-4 mb-16">
+            <span class="text-brand-orange font-semibold text-xs tracking-widest uppercase">Ventajas Exclusivas</span>
+            <h2 class="text-3xl sm:text-5xl font-black text-white">¿Por qué engancharte con nosotros?</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto">No perdemosis el tiempo con rodeos. Ir directo al dato curioso te hace aprender más en menos tiempo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Benefit 1 -->
+            <div class="glass-card p-8 rounded-3xl glass-card-hover border border-white/10 relative group">
+                <div class="w-14 h-14 rounded-2xl bg-brand-orange/20 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Directo al grano</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Sin intros aburridas ni rellenos. Explicaciones ágiles de 60 segundos pensadas para tu ritmo de vida rápido.
+                </p>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="glass-card p-8 rounded-3xl glass-card-hover border border-white/10 relative group">
+                <div class="w-14 h-14 rounded-2xl bg-brand-yellow/20 text-brand-yellow flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Fuentes Verificadas</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Investigamos cada dato con rigor científico e histórico para que compartas información 100% real y sin fake news.
+                </p>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="glass-card p-8 rounded-3xl glass-card-hover border border-white/10 relative group">
+                <div class="w-14 h-14 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Comunidad VIP</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Participa en debates, propone los temas de los siguientes videos y compite en noches de trivias en Discord.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: COMUNIDAD & STATS -->
+    <section id="comunidad" class="py-20 px-4 max-w-7xl mx-auto relative z-10">
+        <div class="glass-card rounded-3xl p-8 lg:p-14 border border-brand-orange/30 relative overflow-hidden">
+            <!-- Background Glows -->
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Info Column -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <span class="px-3.5 py-1.5 rounded-full bg-brand-orange/20 text-brand-orange text-xs font-bold uppercase tracking-wider border border-brand-orange/30">
+                        👾 Discord Crew
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                        Únete a la mayor comunidad de mentes curiosas
+                    </h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        ¿Tienes una teoría loca o encontraste un dato absurdo? Compártelo con miles de personas que aman aprender tanto como tú.
+                    </p>
+
+                    <!-- Animated Stats Counter Grid -->
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-white stat-counter" data-target="150000">0</span>
+                            <span class="text-xs text-slate-400">Seguidores Total</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-brand-orange stat-counter" data-target="25000">0</span>
+                            <span class="text-xs text-slate-400">En Discord</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-brand-yellow stat-counter" data-target="120">0</span>
+                            <span class="text-xs text-slate-400">Videos Virales</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://discord.com" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange hover:bg-brand-orangeHover text-white font-bold rounded-2xl shadow-neon-orange transition-all hover:scale-105">
+                            <i class="fa-brands fa-discord text-xl"></i>
+                            <span>Entrar al Servidor Oficial</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive Discord Roles Mock Preview -->
+                <div class="lg:col-span-6">
+                    <div class="bg-slate-900/90 rounded-2xl p-5 border border-white/10 space-y-3 font-mono text-xs sm:text-sm text-slate-300 shadow-2xl">
+                        <div class="flex items-center justify-between pb-3 border-b border-white/10 font-sans font-bold text-white">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-discord text-brand-orange text-lg"></i> Canales de la Crew</span>
+                            <span class="text-xs text-emerald-400 font-mono">● 1,420 En Línea</span>
+                        </div>
+
+                        <!-- Channel Mock Items -->
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                            <span class="flex items-center gap-2 text-white">
+                                <span class="text-slate-500">#</span> 💡-teorias-y-misterios
+                            </span>
+                            <span class="text-[10px] bg-brand-orange/30 text-brand-orange px-2 py-0.5 rounded">Muy Activo</span>
+                        </div>
+
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                            <span class="flex items-center gap-2 text-white">
+                                <span class="text-slate-500">#</span> 🎮-easter-eggs-gaming
+                            </span>
+                            <span class="text-[10px] bg-sky-500/30 text-sky-300 px-2 py-0.5 rounded">Chat</span>
+                        </div>
+
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                            <span class="flex items-center gap-2 text-white">
+                                <span class="text-slate-500">#</span> 🏆-trivias-semanales
+                            </span>
+                            <span class="text-[10px] bg-brand-yellow/30 text-brand-yellow px-2 py-0.5 rounded">Eventos</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="glass-card border-t border-white/10 pt-16 pb-12 px-4 relative z-10 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+            
+            <!-- Brand Column -->
+            <div class="space-y-4 md:col-span-1">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-orange to-brand-yellow flex items-center justify-center text-brand-dark font-black text-lg">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl text-white">Curiosidades<span class="text-brand-orange">.</span></span>
+                </a>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    El rincón de internet donde descubres los secretos más extraños de la ciencia, historia y gaming.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-bold text-white text-sm mb-4">Navegación</h4>
+                <ul class="space-y-2.5 text-xs text-slate-400">
+                    <li><a href="#inicio" class="hover:text-brand-orange transition-colors">Inicio</a></li>
+                    <li><a href="#lo-viral" class="hover:text-brand-orange transition-colors">Lo Viral</a></li>
+                    <li><a href="#generador" class="hover:text-brand-orange transition-colors">Datos Flash</a></li>
+                    <li><a href="#beneficios" class="hover:text-brand-orange transition-colors">¿Por qué seguirnos?</a></li>
+                </ul>
+            </div>
+
+            <!-- Community & Social -->
+            <div>
+                <h4 class="font-bold text-white text-sm mb-4">Comunidad</h4>
+                <ul class="space-y-2.5 text-xs text-slate-400">
+                    <li><a href="https://discord.com" target="_blank" class="hover:text-brand-orange transition-colors">Discord Server</a></li>
+                    <li><a href="https://tiktok.com" target="_blank" class="hover:text-brand-orange transition-colors">TikTok Shorts</a></li>
+                    <li><a href="https://youtube.com" target="_blank" class="hover:text-brand-orange transition-colors">YouTube Channel</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Links & Newsletter -->
+            <div class="space-y-4">
+                <h4 class="font-bold text-white text-sm mb-2">Síguenos</h4>
+                <div class="flex items-center gap-3">
+                    <a href="https://tiktok.com" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-brand-orange/30 transition-all">
+                        <i class="fa-brands fa-tiktok text-base"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-red-500/30 transition-all">
+                        <i class="fa-brands fa-youtube text-base"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-pink-500/30 transition-all">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                    </a>
+                    <a href="https://discord.com" target="_blank" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-indigo-500/30 transition-all">
+                        <i class="fa-brands fa-discord text-base"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div class="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+            <p>© 2026 Curiosidades al día. Todos los derechos reservados.</p>
+            <p class="flex items-center gap-1">Diseñado con <i class="fa-solid fa-heart text-brand-orange"></i> para curiosos del mundo.</p>
+        </div>
+    </footer>
+
+    <!-- SIMULATED VIDEO PLAYER MODAL -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity duration-300">
+        <div class="relative w-full max-w-lg glass-card rounded-3xl p-6 border border-white/20 shadow-2xl space-y-4">
+            
+            <!-- Close Button -->
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Content Header -->
+            <span class="text-xs font-bold text-brand-yellow uppercase tracking-wider bg-brand-yellow/10 px-3 py-1 rounded-full border border-brand-yellow/20">
+                🎬 Preview de Contenido
+            </span>
+
+            <!-- Image/Video Mock Player Container -->
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mt-2">
+                <img id="modal-img" src="" alt="Video Preview" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-slate-950/40 flex items-center justify-center">
+                    <div class="text-center space-y-2 p-4">
+                        <div class="w-16 h-16 rounded-full bg-brand-orange text-white flex items-center justify-center text-2xl mx-auto shadow-neon-orange animate-bounce">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                        <p class="text-xs text-white/90 font-medium">Reproductor Simulado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Information -->
+            <div class="space-y-2 text-left">
+                <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+                <p id="modal-desc" class="text-sm text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="pt-2 flex gap-3">
+                <a href="https://youtube.com" target="_blank" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-center text-xs sm:text-sm transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-youtube"></i> Ver en Shorts
+                </a>
+                <button onclick="closeVideoModal()" class="px-5 py-3 glass-card hover:bg-white/10 text-white font-semibold rounded-xl text-xs sm:text-sm">
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. Mobile Navigation Toggle ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // --- 2. Mini Random Curiosity Generator Data & Logic ---
+        const facts = [
+            {
+                category: "🎮 Videojuegos",
+                text: "En el Mario Bros original de 1985, las nubes y los arbustos usan exactamente el mismo sprite, pero recoloreado."
+            },
+            {
+                category: "🌌 Ciencia Espacial",
+                text: "Un día en Venus es más largo que un año entero en Venus. Tarda más en girar sobre su propio eje que alrededor del Sol."
+            },
+            {
+                category: "🐙 Biología",
+                text: "Los pulpos tienen tres corazones, nueve cerebros y su sangre es de color azul debido al cobre que transporta oxígeno."
+            },
+            {
+                category: "📜 Historia",
+                text: "La guerra más corta de la historia duró entre 38 y 45 minutos. Fue entre Gran Bretaña y Zanzíbar en 1896."
+            },
+            {
+                category: "🧠 Neurociencia",
+                text: "El cerebro humano produce suficiente electricidad para encender una bombilla LED pequeña mientras estás despierto."
+            },
+            {
+                category: "🦈 Naturaleza",
+                text: "Los tiburones existían en la Tierra antes de que aparecieran los primeros árboles."
+            }
+        ];
+
+        function generateRandomFact() {
+            const box = document.getElementById('curiosity-box');
+            const categoryEl = document.getElementById('curiosity-category');
+            const textEl = document.getElementById('curiosity-text');
+
+            // Quick fade animation
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                const randomFact = facts[Math.floor(Math.random() * facts.length)];
+                categoryEl.textContent = randomFact.category;
+                textEl.textContent = `"${randomFact.text}"`;
+
+                box.style.opacity = '1';
+                box.style.transform = 'translateY(0)';
+            }, 200);
+        }
+
+        // --- 3. Video Preview Modal Logic ---
+        function openVideoModal(imgSrc, title, desc) {
+            document.getElementById('modal-img').src = imgSrc;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = desc;
+
+            const modal = document.getElementById('video-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close Modal when clicking outside container
+        document.getElementById('video-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'video-modal') {
+                closeVideoModal();
+            }
+        });
+
+        // --- 4. Animated Stats Counter On Scroll ---
+        let animated = false;
+        const counters = document.querySelectorAll('.stat-counter');
+
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // ms
+                const stepTime = 20;
+                const steps = duration / stepTime;
+                const increment = target / steps;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = '+' + target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = '+' + Math.floor(current).toLocaleString();
+                    }
+                }, stepTime);
+            });
+        }
+
+        // Intersection Observer for triggering counters when visible
+        const communitySection = document.getElementById('comunidad');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animated) {
+                    animateCounters();
+                    animated = true;
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (communitySection) {
+            observer.observe(communitySection);
+        }
+    </script>
+</body>
+</html>
